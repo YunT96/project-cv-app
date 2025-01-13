@@ -36,6 +36,7 @@ function App() {
 
   const [educationIdCounter, setEducationIdCounter] = React.useState(2);
   const [experienceIdCounter, setExperienceIdCounter] = React.useState(2);
+  const [expandedSection, setExpandedSection] = React.useState(null);
 
   const updateCV = (section, updatedInfo) => {
     setFormData((prev) => ({
@@ -93,45 +94,72 @@ function App() {
     }));
   };
 
+  const toggleSection = (section) => {
+    setExpandedSection((prev) => (prev === section ? null : section));
+  };
+
   return (
     <div className="app-container">
       <h1>CV Builder</h1>
       <div className="cv-container">
         <div className="form-section">
-          <GeneralInfo
-            formData={formData.generalInfo}
-            updateCV={(updatedInfo) => updateCV("generalInfo", updatedInfo)}
-          />
-          <h2>Education Information</h2>
-          {formData.educationInfo.map((education) => (
-            <EducationInfo
-              key={education.id}
-              formData={education}
-              updateCV={(updatedInfo) => {
-                const newEducationInfo = formData.educationInfo.map((item) =>
-                  item.id === education.id ? updatedInfo : item
-                );
-                updateCV("educationInfo", newEducationInfo);
-              }}
-              deleteEducation={() => deleteEducation(education.id)}
+          <div>
+            <GeneralInfo
+              formData={formData.generalInfo}
+              updateCV={(updatedInfo) => updateCV("generalInfo", updatedInfo)}
             />
-          ))}
-          <button onClick={addEducation}>Add Education</button>
-          <h2>Experience Information</h2>
-          {formData.experienceInfo.map((experience) => (
-            <ExperienceInfo
-              key={experience.id}
-              formData={experience}
-              updateCV={(updatedInfo) => {
-                const newExperienceInfo = formData.experienceInfo.map((item) =>
-                  item.id === experience.id ? updatedInfo : item
-                );
-                updateCV("experienceInfo", newExperienceInfo);
-              }}
-              deleteExperience={() => deleteExperience(experience.id)}
-            />
-          ))}
-          <button onClick={addExperience}>Add Experience</button>
+          </div>
+
+          <div className="education-section">
+            <button onClick={() => toggleSection("educationInfo")}>
+              Education Information
+            </button>
+            {/* If the expandedSection state is equal to "educationInfo", render the EducationInfo component */}
+            {expandedSection === "educationInfo" && (
+              <>
+                {formData.educationInfo.map((education) => (
+                  <EducationInfo
+                    key={education.id}
+                    formData={education}
+                    updateCV={(updatedInfo) => {
+                      const newEducationInfo = formData.educationInfo.map(
+                        (item) =>
+                          item.id === education.id ? updatedInfo : item
+                      );
+                      updateCV("educationInfo", newEducationInfo);
+                    }}
+                    deleteEducation={() => deleteEducation(education.id)}
+                  />
+                ))}
+                <button onClick={addEducation}>Add Education</button>
+              </>
+            )}
+          </div>
+
+          <div className="experience-section">
+            <button onClick={() => toggleSection("experienceInfo")}>
+              Experience Information
+            </button>
+            {expandedSection === "experienceInfo" && (
+              <>
+                {formData.experienceInfo.map((experience) => (
+                  <ExperienceInfo
+                    key={experience.id}
+                    formData={experience}
+                    updateCV={(updatedInfo) => {
+                      const newExperienceInfo = formData.experienceInfo.map(
+                        (item) =>
+                          item.id === experience.id ? updatedInfo : item
+                      );
+                      updateCV("experienceInfo", newExperienceInfo);
+                    }}
+                    deleteExperience={() => deleteExperience(experience.id)}
+                  />
+                ))}
+                <button onClick={addExperience}>Add Experience</button>
+              </>
+            )}
+          </div>
         </div>
         <div className="preview-section">
           <CVDisplay formData={formData} />
