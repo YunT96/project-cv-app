@@ -98,11 +98,87 @@ function App() {
     setExpandedSection((prev) => (prev === section ? null : section));
   };
 
+  const loadDefaultData = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to load the example data? This will override your current data."
+      )
+    ) {
+      setFormData({
+        generalInfo: {
+          name: "John Doe",
+          email: "john.doe@example.com",
+          phone: "123-456-7890",
+          address: "123 Main St, Anytown, USA",
+        },
+        educationInfo: [
+          {
+            id: 1,
+            school: "University of Example",
+            degree: "Bachelor of Science",
+            startDate: "2015",
+            endDate: "2019",
+          },
+        ],
+        experienceInfo: [
+          {
+            id: 1,
+            company: "Example Corp",
+            position: "Software Engineer",
+            startDate: "2019",
+            endDate: "Present",
+            description: "Developed and maintained web applications.",
+          },
+        ],
+      });
+      setEducationIdCounter(2);
+      setExperienceIdCounter(2);
+    }
+  };
+
+  const clearData = () => {
+    if (window.confirm("Are you sure you want to clear all data?")) {
+      setFormData({
+        generalInfo: {
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+        },
+        educationInfo: [
+          {
+            id: 1,
+            school: "",
+            degree: "",
+            startDate: "",
+            endDate: "",
+          },
+        ],
+        experienceInfo: [
+          {
+            id: 1,
+            company: "",
+            position: "",
+            startDate: "",
+            endDate: "",
+            description: "",
+          },
+        ],
+      });
+      setEducationIdCounter(2);
+      setExperienceIdCounter(2);
+    }
+  };
+
   return (
     <div className="app-container">
       <h1>CV Builder</h1>
       <div className="cv-container">
         <div className="form-section">
+          <div className="form-controls">
+            <button onClick={loadDefaultData}>Load Example</button>
+            <button onClick={clearData}>Clear Form</button>
+          </div>
           <div>
             <GeneralInfo
               formData={formData.generalInfo}
@@ -114,10 +190,11 @@ function App() {
             <button onClick={() => toggleSection("educationInfo")}>
               Education Information
             </button>
-            {/* If the expandedSection state is equal to "educationInfo", render the EducationInfo component */}
-            {expandedSection === "educationInfo" && (
-              <>
-                {formData.educationInfo.map((education) => (
+            <div
+              className={expandedSection === "educationInfo" ? "expanded" : ""}
+            >
+              {expandedSection === "educationInfo" &&
+                formData.educationInfo.map((education) => (
                   <EducationInfo
                     key={education.id}
                     formData={education}
@@ -131,18 +208,21 @@ function App() {
                     deleteEducation={() => deleteEducation(education.id)}
                   />
                 ))}
+              {expandedSection === "educationInfo" && (
                 <button onClick={addEducation}>Add Education</button>
-              </>
-            )}
+              )}
+            </div>
           </div>
 
           <div className="experience-section">
             <button onClick={() => toggleSection("experienceInfo")}>
               Experience Information
             </button>
-            {expandedSection === "experienceInfo" && (
-              <>
-                {formData.experienceInfo.map((experience) => (
+            <div
+              className={expandedSection === "experienceInfo" ? "expanded" : ""}
+            >
+              {expandedSection === "experienceInfo" &&
+                formData.experienceInfo.map((experience) => (
                   <ExperienceInfo
                     key={experience.id}
                     formData={experience}
@@ -156,9 +236,10 @@ function App() {
                     deleteExperience={() => deleteExperience(experience.id)}
                   />
                 ))}
+              {expandedSection === "experienceInfo" && (
                 <button onClick={addExperience}>Add Experience</button>
-              </>
-            )}
+              )}
+            </div>
           </div>
         </div>
         <div className="preview-section">
