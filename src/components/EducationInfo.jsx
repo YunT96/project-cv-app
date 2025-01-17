@@ -37,7 +37,11 @@ export default function EducationInfo({ formData, updateCV, deleteEducation }) {
           onChange={handleChange}
           placeholder="End Date"
         />
-        <button type="button" onClick={deleteEducation}>
+        <button
+          className="delete-button"
+          type="button"
+          onClick={deleteEducation}
+        >
           Delete
         </button>
       </form>

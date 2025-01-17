@@ -47,7 +47,11 @@ export default function ExperienceInfo({
           onChange={handleChange}
           placeholder="Description"
         />
-        <button type="button" onClick={deleteExperience}>
+        <button
+          className="delete-button"
+          type="button"
+          onClick={deleteExperience}
+        >
           Delete
         </button>
       </form>

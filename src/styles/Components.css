@@ -1,29 +1,51 @@
+/* Variables */
+:root {
+  --primary-color: #28294d;
+  --primary-color-hover: #3b3c6b;
+  --primary-blue: #3b82f6;
+  --primary-blue-hover: #2563eb;
+  --primary-red: #ef4444;
+  --primary-red-hover: #dc2626;
+  --text-dark: #4b5563;
+  --text-light: #6b7280;
+  --bg-light: #f8fafc;
+  --text-white: #e2e8f0;
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+}
+
+/* Base Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* CV Display Container */
 .cv-display {
-  aspect-ratio: 1 / 1.414; /* A4 aspect ratio */
+  /* aspect-ratio: 1 / 1.414; A4 aspect ratio */
+  min-height: 100vh;
   max-width: 800px;
   margin: 0 auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   background-color: white;
-  border-radius: 8px;
   overflow: hidden;
 }
 
 .cv-bottom-display {
-  padding: 2.5rem;
-  height: calc(100% - 200px); /* Adjust based on header height */
-  overflow-y: auto;
+  padding: 0 var(--spacing-2xl);
+  height: calc(100% - 200px);
 }
 
-/* General Info Section */
+/* Header Section */
 .cv-general-info {
-  background-color: #28294d;
-  padding: 2.5rem;
+  background-color: var(--primary-color);
+  padding: var(--spacing-2xl);
   color: white;
   text-align: center;
 }
@@ -32,75 +54,95 @@
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 700;
   color: white;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .cv-contact-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
-.cv-contact-info p {
-  color: #e2e8f0;
-  font-size: 0.875rem;
-}
-
+.cv-contact-info p,
 .cv-address-info p {
-  color: #e2e8f0;
+  color: var(--text-white);
   font-size: 0.875rem;
 }
 
 /* Section Headers */
+h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
 .cv-display h2 {
-  color: #28294d;
-  border-bottom: 2px solid #3b82f6;
-  padding-bottom: 0.5rem;
-  margin: 2rem 0 1.5rem;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-blue);
+  padding-bottom: var(--spacing-sm);
+  margin: var(--spacing-xl) 0 var(--spacing-lg);
   font-size: clamp(1.25rem, 3vw, 1.5rem);
 }
 
-/* Education and Experience Entries */
+/* Content Entries */
 .education-entry,
 .experience-entry {
-  margin-bottom: 1.5rem;
-  padding: 1.25rem;
-  background-color: #f8fafc;
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background-color: var(--bg-light);
   border-radius: 6px;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
 
 .education-entry p:first-child,
 .experience-entry p:first-child {
   font-weight: 600;
   font-size: 1.125rem;
-  color: #28294d;
-  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
 }
 
 .education-entry p:nth-child(2),
 .experience-entry p:nth-child(2) {
   font-weight: 500;
-  color: #4b5563;
-  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
 }
 
 .education-entry p:nth-child(3),
 .education-entry p:nth-child(4),
 .experience-entry p:nth-child(3) {
-  color: #6b7280;
+  color: var(--text-light);
   font-size: 0.875rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--spacing-xs);
 }
 
 .experience-entry p:last-child {
-  margin-top: 0.75rem;
+  margin-top: var(--spacing-sm);
   line-height: 1.6;
-  color: #4b5563;
+  color: var(--text-dark);
 }
 
+/* Ensure the delete button styles are more specific */
+.form-section .delete-button {
+  background-color: var(--primary-red);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-section .delete-button:hover {
+  background-color: var(--primary-red-hover);
+}
+
+/* Media Queries */
 @media print {
   .cv-display {
     box-shadow: none;
@@ -116,7 +158,7 @@
 @media (max-width: 640px) {
   .cv-contact-info {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--spacing-sm);
   }
 
   .cv-display {

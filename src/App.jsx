@@ -187,7 +187,10 @@ function App() {
           </div>
 
           <div className="education-section">
-            <button onClick={() => toggleSection("educationInfo")}>
+            <button
+              className="section-button"
+              onClick={() => toggleSection("educationInfo")}
+            >
               Education Information
             </button>
             <div
@@ -209,13 +212,18 @@ function App() {
                   />
                 ))}
               {expandedSection === "educationInfo" && (
-                <button onClick={addEducation}>Add Education</button>
+                <button className="add-button" onClick={addEducation}>
+                  Add Education
+                </button>
               )}
             </div>
           </div>
 
           <div className="experience-section">
-            <button onClick={() => toggleSection("experienceInfo")}>
+            <button
+              className="section-button"
+              onClick={() => toggleSection("experienceInfo")}
+            >
               Experience Information
             </button>
             <div
@@ -237,7 +245,9 @@ function App() {
                   />
                 ))}
               {expandedSection === "experienceInfo" && (
-                <button onClick={addExperience}>Add Experience</button>
+                <button className="add-button" onClick={addExperience}>
+                  Add Experience
+                </button>
               )}
             </div>
           </div>

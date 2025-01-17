@@ -22,8 +22,9 @@ export default function CVDisplay({ formData }) {
           <div key={education.id} className="education-entry">
             <p>{education.school}</p>
             <p>{education.degree}</p>
-            <p>{education.startDate}</p>
-            <p>{education.endDate}</p>
+            <p>
+              {education.startDate} - {education.endDate}
+            </p>
           </div>
         ))}
 
