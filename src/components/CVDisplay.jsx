@@ -20,23 +20,42 @@ export default function CVDisplay({ formData }) {
         <h2>Education</h2>
         {formData.educationInfo.map((education) => (
           <div key={education.id} className="education-entry">
-            <p>{education.school}</p>
-            <p>{education.degree}</p>
-            <p>
-              {education.startDate} - {education.endDate}
-            </p>
+            <div className="date-column">
+              <p>{education.startDate}</p>
+              <div className="dash">-</div>
+              <p>{education.endDate}</p>
+            </div>
+            <div className="info-column">
+              <p>{education.school}</p>
+              <p>{education.degree}</p>
+            </div>
           </div>
         ))}
 
         <h2>Professional Experience</h2>
         {formData.experienceInfo.map((experience) => (
           <div key={experience.id} className="experience-entry">
-            <p>{experience.company}</p>
-            <p>{experience.position}</p>
-            <p>
-              {experience.startDate} - {experience.endDate}
-            </p>
-            <p>{experience.description}</p>
+            <div className="date-column">
+              <p>{experience.startDate}</p>
+              <div className="dash">-</div>
+              <p>{experience.endDate}</p>
+            </div>
+            <div className="info-column">
+              <p>{experience.company}</p>
+              <p>{experience.position}</p>
+              <p
+                style={{
+                  wordWrap: "break-word",
+                  whiteSpace: "pre-wrap",
+                  maxWidth: "100%",
+                  overflowWrap: "break-word",
+                  overflow: "hidden", // Prevents horizontal scrolling
+                  textOverflow: "ellipsis", // Shows ... if text gets cut off
+                }}
+              >
+                {experience.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>

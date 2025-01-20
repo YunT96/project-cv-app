@@ -127,7 +127,8 @@ function App() {
             position: "Software Engineer",
             startDate: "2019",
             endDate: "Present",
-            description: "Developed and maintained web applications.",
+            description:
+              "Developed and maintained web applications. Collaborated with cross-functional teams to define, design, and ship new features. Ensured the performance, quality, and responsiveness of applications.",
           },
         ],
       });

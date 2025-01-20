@@ -41,12 +41,18 @@ export default function ExperienceInfo({
           onChange={handleChange}
           placeholder="End Date"
         />
-        <input
+        <textarea
           name="description"
           value={formData.description || ""}
           onChange={handleChange}
           placeholder="Description"
-        />
+          style={{
+            resize: "vertical",
+            overflow: "auto",
+            width: "100%",
+          }}
+        ></textarea>
+
         <button
           className="delete-button"
           type="button"
@@ -54,6 +60,7 @@ export default function ExperienceInfo({
         >
           Delete
         </button>
+        <span className="seperator"></span>
       </form>
     </div>
   );

@@ -44,6 +44,7 @@ export default function EducationInfo({ formData, updateCV, deleteEducation }) {
         >
           Delete
         </button>
+        <span className="seperator"></span>
       </form>
     </div>
   );

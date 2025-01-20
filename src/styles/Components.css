@@ -8,6 +8,7 @@
   --primary-red-hover: #dc2626;
   --text-dark: #4b5563;
   --text-light: #6b7280;
+  --text-lighter: #d1d5db;
   --bg-light: #f8fafc;
   --text-white: #e2e8f0;
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -86,6 +87,10 @@ h2 {
   font-size: clamp(1.25rem, 3vw, 1.5rem);
 }
 
+.seperator {
+  color: var(--text-lighter);
+  border-bottom: 2px solid var(--text-lighter);
+}
 /* Content Entries */
 .education-entry,
 .experience-entry {
@@ -94,35 +99,57 @@ h2 {
   background-color: var(--bg-light);
   border-radius: 6px;
   transition: transform 0.2s ease;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: var(--spacing-lg);
 }
 
-.education-entry p:first-child,
-.experience-entry p:first-child {
+.info-column {
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.info-column p:first-child {
   font-weight: 600;
   font-size: 1.125rem;
   color: var(--primary-color);
   margin-bottom: var(--spacing-sm);
 }
 
-.education-entry p:nth-child(2),
-.experience-entry p:nth-child(2) {
+.info-column p:nth-child(2) {
   font-weight: 500;
-  color: var(--text-dark);
+  color: var(--text-light);
   margin-bottom: var(--spacing-sm);
 }
 
-.education-entry p:nth-child(3),
-.education-entry p:nth-child(4),
-.experience-entry p:nth-child(3) {
-  color: var(--text-light);
+.info-column p:nth-child(3),
+.info-column p:nth-child(4) {
+  color: var(--text-dark);
   font-size: 0.875rem;
   margin-bottom: var(--spacing-xs);
 }
 
-.experience-entry p:last-child {
-  margin-top: var(--spacing-sm);
-  line-height: 1.6;
+.date-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.date-column p:first-child {
+  color: var(--text-light);
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.date-column p:last-child {
+  font-weight: 600;
   color: var(--text-dark);
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 /* Ensure the delete button styles are more specific */
