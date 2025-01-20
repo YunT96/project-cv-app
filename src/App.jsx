@@ -115,7 +115,7 @@ function App() {
           {
             id: 1,
             school: "University of Example",
-            degree: "Bachelor of Science",
+            degree: "Bachelor of Science in Computer Science",
             startDate: "2015",
             endDate: "2019",
           },
@@ -189,11 +189,14 @@ function App() {
 
           <div className="education-section">
             <button
-              className="section-button"
+              className={`section-button ${
+                expandedSection === "educationInfo" ? "expanded" : ""
+              }`}
               onClick={() => toggleSection("educationInfo")}
             >
               Education Information
             </button>
+
             <div
               className={expandedSection === "educationInfo" ? "expanded" : ""}
             >
@@ -222,7 +225,9 @@ function App() {
 
           <div className="experience-section">
             <button
-              className="section-button"
+              className={`section-button ${
+                expandedSection === "experienceInfo" ? "expanded" : ""
+              }`}
               onClick={() => toggleSection("experienceInfo")}
             >
               Experience Information

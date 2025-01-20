@@ -180,6 +180,36 @@ textarea::placeholder {
   background-color: #f7f7f7;
 }
 
+/* Triangle toggle */
+.section-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #28294d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  position: relative;
+  padding: var(--spacing-md);
+}
+
+.section-button::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid white;
+  transition: transform 0.2s ease;
+}
+
+.section-button.expanded::after {
+  transform: rotate(180deg);
+}
+
 /* Media Queries */
 @media (max-width: 1024px) {
   .cv-container {
